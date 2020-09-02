@@ -6,65 +6,64 @@ import { TaskFilterDto } from './dto/get-task-filter.dto';
 
 @Injectable()
 export class TasksService {
-    private tasks: Task[] = [];
+  private tasks: Task[] = [];
 
-    getAllTasks(): Task[] {
-        return this.tasks;
+  getAllTasks(): Task[] {
+    return this.tasks;
+  }
+
+  getFilteredTasks(filterDto: TaskFilterDto): Task[] {
+    const { status, search } = filterDto;
+
+    let tasks = this.tasks;
+
+    if (status) {
+      tasks = tasks.filter(task => task.status === status);
     }
 
-    getFilteredTasks(filterDto: TaskFilterDto): Task[] {
-        const { status, search } = filterDto;
-
-        let tasks = this.tasks;
-        
-        if (status)
-        {
-            tasks = tasks.filter(task => task.status === status);
-        }
-
-        if (search) {
-            tasks = tasks.filter(task => 
-                task.title.includes(search) ||
-                task.description.includes(search)
-            );
-        }
-        
-        return tasks;
+    if (search) {
+      tasks = tasks.filter(
+        task =>
+          task.title.includes(search) || task.description.includes(search),
+      );
     }
 
-    getTaskById(id: string): Task {
-        const task = this.tasks.find(task => task.id === id);
+    return tasks;
+  }
 
-        if(!task){
-            throw new NotFoundException(`Task with ID ${id} not found`);
-        }
+  getTaskById(id: string): Task {
+    const task = this.tasks.find(task => task.id === id);
 
-        return task;
+    if (!task) {
+      throw new NotFoundException(`Task with ID ${id} not found`);
     }
 
-    deleteTask(id: string): void {
-        const found = this.getTaskById(id)
-        this.tasks = this.tasks.filter(task => task.id !== found.id)
-        // Replace with something more efficient
-    }
+    return task;
+  }
 
-    createTask(createTaskDto: CreateTaskDto): Task {
-        const { title, description } = createTaskDto;
+  deleteTask(id: string): void {
+    const found = this.getTaskById(id);
+    this.tasks = this.tasks.filter(task => task.id !== found.id);
+    // Replace with something more efficient
+  }
 
-        const task: Task = {
-            id: uuid(),
-            title,
-            description,
-            status: TaskStatus.OPEN,
-        };
+  createTask(createTaskDto: CreateTaskDto): Task {
+    const { title, description } = createTaskDto;
 
-        this.tasks.push(task);
-        return task;
-    }
+    const task: Task = {
+      id: uuid(),
+      title,
+      description,
+      status: TaskStatus.OPEN,
+    };
 
-    updateTaskStatus(id: string, status: TaskStatus): Task {
-        const task = this.getTaskById(id);; 
-        task.status = status;
-        return task;
-    }
+    this.tasks.push(task);
+    return task;
+  }
+
+  updateTaskStatus(id: string, status: TaskStatus): Task {
+    const task = this.getTaskById(id);
+    task.status = status;
+    return task;
+  }
 }
