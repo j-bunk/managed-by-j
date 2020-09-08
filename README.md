@@ -32,7 +32,7 @@ $ npm run test:e2e
 Bakcend application was created with:
 - <a href="https://docs.nestjs.com"><img src="https://d33wubrfki0l68.cloudfront.net/49c2be6f2607b5c12dd27f8ecc8521723447975d/f05c5/logo-small.cbbeba89.svg" width=50 alt="Nest Logo"></a>
 - PostgresSQL
-- TypeORM ()
+- TypeORM
 - passport.js (authentication middleware)
 - bcryptjs (data encryption)
 - class-validator (validation)
