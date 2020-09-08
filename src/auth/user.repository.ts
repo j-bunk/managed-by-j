@@ -5,6 +5,8 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { SqlErrorCodes } from 'src/enums/sql-error-codes.enum';
+import * as bcrypt from 'bcrypt';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -12,20 +14,37 @@ export class UserRepository extends Repository<User> {
     const { username, password } = authCredentialsDto;
 
     const user = new User();
+    const salt = await bcrypt.genSalt();
+
     user.username = username;
-    user.password = password;
+    user.password = await this.hashPassword(password, salt);
 
     try {
       await this.save(user);
     } catch (error) {
-      // Move error codes to enum file
-      // Refer to this https://www.h2database.com/javadoc/org/h2/api/ErrorCode.html
-      if (error.code === '23505') {
+      if (error.code === SqlErrorCodes.DUPLICATE_KEY) {
         // duplicate username
         throw new ConflictException('Username already exists');
       } else {
         throw new InternalServerErrorException();
       }
     }
+  }
+
+  async validateCredentials(
+    authCredentialsDto: AuthCredentialsDto,
+  ): Promise<string> {
+    const { username, password } = authCredentialsDto;
+    const user = await this.findOne({ username });
+
+    if (user && (await user.validatePassword(password))) {
+      return user.username;
+    } else {
+      return null;
+    }
+  }
+
+  private async hashPassword(password: string, salt: string): Promise<string> {
+    return bcrypt.hash(password, salt);
   }
 }
