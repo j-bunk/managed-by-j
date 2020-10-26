@@ -18,6 +18,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
+  // Passport first checks the JWT's signature to check if it match the secretOrKey
+  // If it does not match it will throw an error
+  // If it does match it then we validate the payload
   async validate(payload: JwtPayload): Promise<User> {
     const { username } = payload;
 

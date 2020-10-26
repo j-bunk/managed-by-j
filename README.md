@@ -39,7 +39,6 @@ Bakcend application was created with:
 
  ## 💡 &nbsp; Key Concepts
 
-- MVC (Model-View-Controller) design pattern
 - REST architecture 
 - Authentication and authorization
 - Cryptography and security
@@ -48,7 +47,6 @@ Bakcend application was created with:
 
  ## To do
 
- - Implement authorization (task ownership). Commit coming very soon.
  - Achieve 100% code coverage 
  - Create a front-end application using React
  - Deploy application using AWS Elastic Beanstalk

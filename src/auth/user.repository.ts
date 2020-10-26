@@ -5,7 +5,7 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { SqlErrorCodes } from 'src/enums/sql-error-codes.enum';
+import { SqlErrorCodes } from '../enums/sql-error-codes.enum';
 import * as bcrypt from 'bcrypt';
 
 @EntityRepository(User)
