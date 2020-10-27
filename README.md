@@ -54,7 +54,7 @@ The project is split into the following parts:
   - `/config` contains configuration file to connect ORM and datbase.
   - `/tasks` contains code relating to task management (task management CRUD operations and more).
 
-#### 🌵 Branch Naming
+#### ➕ Commit Types
 
 Branches are prefixed with the following codes to denote their purpose:
 
