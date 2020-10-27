@@ -56,14 +56,14 @@ The project is split into the following parts:
 
 #### ➕ Commit Types
 
-Branches are prefixed with the following codes to denote their purpose:
+Commits are prefixed with the following codes to denote their purpose:
 
 - `feat[-XX]/`: Implementation of feature or enhancements/optimizations.
-- `fix[-XX]/`: A fixes for bugs and basic refactoring.
+- `fix[-XX]/`: Fixes for bugs and basic refactoring.
 
 #### ❗ Commit Message Format
 
-*This specification is simplified version of the [AngularJS commit message format][https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#].*
+*This format is a simplified version of the [AngularJS commit message format](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#).*
 
 ```
 <type>: <short summary>

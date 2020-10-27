@@ -1,8 +1,8 @@
 db:
-  host: 'placeholder'
-  username: 'placeholder'
-  password: 'placeholder'
+  host: 'localhost'
+  username: 'postgres'
+  password: 'Deadsea.2'
   synchronize: true
 
 jwt:
-  secret: 'placeholder'
+  secret: 'topSecret2000'
