@@ -23,7 +23,7 @@ export class Task extends BaseEntity {
   status: TaskStatus;
 
   @ManyToOne(
-    type => User,
+    () => User,
     user => user.task,
     { eager: false },
   )

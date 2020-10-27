@@ -22,7 +22,7 @@ export class User extends BaseEntity {
   password: string;
 
   @OneToMany(
-    type => Task,
+    () => Task,
     task => task.user,
     { eager: true },
   )

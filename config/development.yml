@@ -1,0 +1,8 @@
+db:
+  host: 'placeholder'
+  username: 'placeholder'
+  password: 'placeholder'
+  synchronize: true
+
+jwt:
+  secret: 'placeholder'

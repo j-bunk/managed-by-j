@@ -35,6 +35,3 @@ lerna-debug.log*
 
 # README Draft
 README_DRAFT.md
-
-# No longer track config file
-/src/config
